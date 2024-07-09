@@ -19,6 +19,7 @@ class ManageServer extends Component
     public string $hostname;
     public string $username;
     public string $password;
+    public string|null $mikrotik_software_id = null;
     public int $port = 8728;
     public bool $legacy = false;
 
@@ -49,20 +50,30 @@ class ManageServer extends Component
 
             if($mikrotik->connected){
                 $this->checked = true;
+                $this->mikrotik_software_id = $mikrotik->mikrotik_software_id;
             }
 
         }else {
             $server = Server::where("team_id", $this->team->id)->first();
 
             if($server !== null){
+
+                if($server->mikrotik_software_id != $this->mikrotik_software_id){
+                    // do something if the software id differ (merge or recreate new one)
+                }
                 // server found. do the update instead
                 $server->update($validated);
                 $this->dispatch('saved');
 
             }else{
                 // not found. creating...
-                Server::create(array_merge(["team_id" => $this->team->id], $validated));
-        
+                Server::create(
+                    array_merge([
+                        "team_id" => $this->team->id,
+                        "mikrotik_software_id" => $this->mikrotik_software_id
+                    ], $validated)
+                );
+                
                 $this->dispatch('saved');
             }
 

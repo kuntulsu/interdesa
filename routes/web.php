@@ -11,8 +11,12 @@ Route::get('/', function (Request $request) {
 });
 
 Route::get("/testing", function() {
-    
-    
+    // $server = App\Models\Server::first();
+
+    // $router = $server->connect();
+    // if($router->connected){
+    //     dump($router->mikrotik_software_id);
+    // }
 });
 
 Route::middleware([

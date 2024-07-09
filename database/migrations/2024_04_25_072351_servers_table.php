@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("password");
             $table->integer("port");
             $table->integer("legacy")->default(0);
+            $table->string("mikrotik_software_id")->nullable();
             $table->timestamps();
         });
     }

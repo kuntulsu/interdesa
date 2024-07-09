@@ -40,6 +40,7 @@ class PPPoEController extends Controller
                 $user_profile = new Customer;
                 $user_profile->secret_id = $profile['.id'];
                 $user_profile->server_id = $server->id;
+                $user_profile->mikrotik_software_id = $router->saved_software_id;
 
                 $user_profile->save();
             }

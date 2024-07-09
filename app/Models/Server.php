@@ -27,7 +27,7 @@ class Server extends Model
     }
     public function connect(): Mikrotik
     {
-        return new Mikrotik($this->hostname, $this->username, $this->password, $this->port);
+        return new Mikrotik($this->hostname, $this->username, $this->password, $this->port, $this->mikrotik_software_id);
     }
 
     protected function casts(): array
