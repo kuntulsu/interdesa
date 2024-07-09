@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+* > i {
+    @apply text-orange-400;
+}
+
+.masked {
+    @apply text-transparent;
+    text-shadow: 0 0 10px #fff;
+}
+
+.masked:hover {
+    @apply dark:text-white;
+    text-shadow: none;
+}
